@@ -2,9 +2,9 @@ from graphics import Line, Point
 
 class Cell:
 	def __init__(self,
-			  p1,
-			  p2,
-			  window,
+			  p1 = None,
+			  p2 = None,
+			  window = None,
 			  has_left_wall=True,
 			  has_right_wall=True,
 			  has_top_wall=True,
@@ -14,10 +14,14 @@ class Cell:
 		self.has_right_wall = has_right_wall
 		self.has_top_wall = has_top_wall
 		self.has_bottom_wall = has_bottom_wall
-		self._x1 = p1.x
-		self._x2 = p2.x
-		self._y1 = p1.y
-		self._y2 = p2.y
+
+		if p1 is not None:
+			self._x1 = p1.x
+			self._y1 = p1.y
+		if p2 is not None:
+			self._x2 = p2.x
+			self._y2 = p2.y
+
 		self._win = window
 
 	def draw(self):
