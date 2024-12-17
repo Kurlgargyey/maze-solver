@@ -24,13 +24,13 @@ class Cell:
 		if self._win is None:
 			return
 		if self.has_left_wall:
-			self._win.draw_line(Line(Point(self._x1, self._y1), Point(self._x1, self._y2)), "black")
+			self._win.draw_line(Line(Point(self._x1, self._y1), Point(self._x1, self._y2)))
 		if self.has_right_wall:
-			self._win.draw_line(Line(Point(self._x2, self._y1), Point(self._x2, self._y2)), "black")
+			self._win.draw_line(Line(Point(self._x2, self._y1), Point(self._x2, self._y2)))
 		if self.has_top_wall:
-			self._win.draw_line(Line(Point(self._x1, self._y1), Point(self._x2, self._y1)), "black")
+			self._win.draw_line(Line(Point(self._x1, self._y1), Point(self._x2, self._y1)))
 		if self.has_bottom_wall:
-			self._win.draw_line(Line(Point(self._x1, self._y2), Point(self._x2, self._y2)), "black")
+			self._win.draw_line(Line(Point(self._x1, self._y2), Point(self._x2, self._y2)))
 
 	def center(self):
 		return Point(self._x1+(self._x2-self._x1)/2,self._y1+(self._y2-self._y1)/2)
