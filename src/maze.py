@@ -26,18 +26,24 @@ class Maze:
 
 		for i, col in enumerate(self._cells):
 			for j, cell in enumerate(col):
+				cell = self._cells[i][j]
+				x = self._x1+self._cell_size_x*i
+				y = self._y1+self._cell_size_y*j
+				cell._x1 = x
+				cell._x2 = x+self._cell_size_x
+				cell._y1 = y
+				cell._y2 = y+self._cell_size_y
 				self._draw_cell(i, j)
 
+	def _break_entrance_and_exit(self):
+		self._cells[0][0].has_top_wall = False
+		self._draw_cell(0,0)
+		self._cells[-1][-1].has_bottom_wall = False
+		self._draw_cell(-1, -1)
+
 	def _draw_cell(self, i, j):
-		cell = self._cells[i][j]
-		x = self._x1+self._cell_size_x*i
-		y = self._y1+self._cell_size_y*j
-		cell._x1 = x
-		cell._x2 = x+self._cell_size_x
-		cell._y1 = y
-		cell._y2 = y+self._cell_size_y
 		if self._win is not None:
-			cell.draw()
+			self._cells[i][j].draw()
 			self._animate()
 
 	def _animate(self):

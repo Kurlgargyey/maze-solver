@@ -8,5 +8,5 @@ def main():
 	maz._create_cells()
 	win.wait_for_close()
 
-
-main()
+if __name__ == "__main__":
+	main()
