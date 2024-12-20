@@ -20,6 +20,7 @@ class Maze:
 		self._cell_size_y = cell_size_y
 		self._win = win
 		self._create_cells()
+		self._break_entrance_and_exit()
 
 	def _create_cells(self):
 		self._cells = [[Cell(window=self._win) for i in range(self._num_rows)] for j in range(self._num_cols)]
@@ -48,4 +49,4 @@ class Maze:
 
 	def _animate(self):
 		self._win.redraw()
-		time.sleep(0.2)
+		time.sleep(0.02)

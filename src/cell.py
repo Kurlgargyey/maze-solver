@@ -27,14 +27,18 @@ class Cell:
 	def draw(self):
 		if self._win is None:
 			return
-		if self.has_left_wall:
-			self._win.draw_line(Line(Point(self._x1, self._y1), Point(self._x1, self._y2)))
-		if self.has_right_wall:
-			self._win.draw_line(Line(Point(self._x2, self._y1), Point(self._x2, self._y2)))
-		if self.has_top_wall:
-			self._win.draw_line(Line(Point(self._x1, self._y1), Point(self._x2, self._y1)))
-		if self.has_bottom_wall:
-			self._win.draw_line(Line(Point(self._x1, self._y2), Point(self._x2, self._y2)))
+		self._draw_wall(Line(Point(self._x1, self._y1), Point(self._x1, self._y2)), self.has_left_wall)
+		self._draw_wall(Line(Point(self._x2, self._y1), Point(self._x2, self._y2)), self.has_right_wall)
+		self._draw_wall(Line(Point(self._x1, self._y1), Point(self._x2, self._y1)), self.has_top_wall)
+		self._draw_wall(Line(Point(self._x1, self._y2), Point(self._x2, self._y2)), self.has_bottom_wall)
+
+	def _draw_wall(self, wall, wall_exists):
+		if wall_exists:
+			self._win.draw_line(wall)
+		else:
+			wall.width = 3
+			self._win.draw_line(wall, "white")
+
 
 	def center(self):
 		return Point(self._x1+(self._x2-self._x1)/2,self._y1+(self._y2-self._y1)/2)
