@@ -89,6 +89,11 @@ class Maze:
 		self._draw_cell(i1, j1)
 		self._draw_cell(i2, j2)
 
+	def _reset_cells_visited(self):
+		for row in self._cells:
+			for cell in row:
+				cell.visited = False
+
 	def _draw_cell(self, i, j):
 		if self._win is not None:
 			self._cells[j][i].draw()
