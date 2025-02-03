@@ -28,7 +28,7 @@ class Maze:
 		self._break_entrance_and_exit()
 
 	def _create_cells(self):
-		self._cells = [[Cell(window=self._win) for j in range(self._num_cols)] for i in range(self._num_rows)]
+		self._cells = [[Cell(window=self._win) for i in range(self._num_rows)] for j in range(self._num_cols)]
 
 		for i, col in enumerate(self._cells):
 			for j, cell in enumerate(col):
