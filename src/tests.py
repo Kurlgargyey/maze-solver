@@ -39,5 +39,13 @@ class EntryExitTests(unittest.TestCase):
         self.assertFalse(m1._cells[0][0].has_top_wall)
         self.assertFalse(m1._cells[-1][-1].has_bottom_wall)
 
+class BreakWallsTests(unittest.TestCase):
+    def test_loop_finishes(self):
+        num_cols = 12
+        num_rows = 10
+        m1 = Maze(50, 50, num_rows, num_cols, 15, 15)
+        m1._break_walls_r(0, 0)
+        self.assertTrue(True)
+
 if __name__ == "__main__":
     unittest.main()

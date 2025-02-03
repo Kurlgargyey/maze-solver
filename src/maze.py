@@ -47,6 +47,47 @@ class Maze:
 		self._cells[-1][-1].has_bottom_wall = False
 		self._draw_cell(-1, -1)
 
+	def _break_walls_r(self, i, j):
+		self._cells[i][j].visited = True
+		while True:
+			queue = []
+			if j > 0 and not self._cells[i][j-1].visited:
+				queue.append((i, j-1))
+			if i > 0 and not self._cells[i-1][j].visited:
+				queue.append((i-1, j))
+			if j < self._num_cols-1 and not self._cells[i][j+1].visited:
+				queue.append((i, j+1))
+			if i < self._num_rows-1 and not self._cells[i+1][j].visited:
+				queue.append((i+1, j))
+			if len(queue) == 0:
+				self._draw_cell(i, j)
+				return
+			next_i, next_j = random.choice(queue)
+			self._break_wall(i, j, next_i, next_j)
+			self._break_walls_r(next_i, next_j)
+
+	def _break_wall(self, i1, j1, i2, j2):
+		cell1 = self._cells[i1][j1]
+		cell2 = self._cells[i2][j2]
+
+		if j1 == j2:
+			if i2 < i1:
+				cell1.has_top_wall = False
+				cell2.has_bottom_wall = False
+			else:
+				cell1.has_bottom_wall = False
+				cell2.has_top_wall = False
+		else:
+			if j2 < j1:
+				cell1.has_left_wall = False
+				cell2.has_right_wall = False
+			else:
+				cell1.has_right_wall = False
+				cell2.has_left_wall = False
+
+		self._draw_cell(i1, j1)
+		self._draw_cell(i2, j2)
+
 	def _draw_cell(self, i, j):
 		if self._win is not None:
 			self._cells[i][j].draw()
