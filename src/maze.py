@@ -26,6 +26,7 @@ class Maze:
 
 		self._create_cells()
 		self._break_entrance_and_exit()
+		self._break_walls_r(0, 0)
 
 	def _create_cells(self):
 		self._cells = [[Cell(window=self._win) for i in range(self._num_rows)] for j in range(self._num_cols)]
@@ -48,16 +49,16 @@ class Maze:
 		self._draw_cell(-1, -1)
 
 	def _break_walls_r(self, i, j):
-		self._cells[i][j].visited = True
+		self._cells[j][i].visited = True
 		while True:
 			queue = []
-			if j > 0 and not self._cells[i][j-1].visited:
+			if j > 0 and not self._cells[j-1][i].visited:
 				queue.append((i, j-1))
-			if i > 0 and not self._cells[i-1][j].visited:
+			if i > 0 and not self._cells[j][i-1].visited:
 				queue.append((i-1, j))
-			if j < self._num_cols-1 and not self._cells[i][j+1].visited:
+			if j < self._num_cols-1 and not self._cells[j+1][i].visited:
 				queue.append((i, j+1))
-			if i < self._num_rows-1 and not self._cells[i+1][j].visited:
+			if i < self._num_rows-1 and not self._cells[j][i+1].visited:
 				queue.append((i+1, j))
 			if len(queue) == 0:
 				self._draw_cell(i, j)
@@ -67,8 +68,8 @@ class Maze:
 			self._break_walls_r(next_i, next_j)
 
 	def _break_wall(self, i1, j1, i2, j2):
-		cell1 = self._cells[i1][j1]
-		cell2 = self._cells[i2][j2]
+		cell1 = self._cells[j1][i1]
+		cell2 = self._cells[j2][i2]
 
 		if j1 == j2:
 			if i2 < i1:
@@ -90,7 +91,7 @@ class Maze:
 
 	def _draw_cell(self, i, j):
 		if self._win is not None:
-			self._cells[i][j].draw()
+			self._cells[j][i].draw()
 			self._animate()
 
 	def _animate(self):
