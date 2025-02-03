@@ -32,9 +32,9 @@ class Maze:
 	def _create_cells(self):
 		self._cells = [[Cell(window=self._win) for i in range(self._num_rows)] for j in range(self._num_cols)]
 
-		for i, col in enumerate(self._cells):
-			for j, cell in enumerate(col):
-				cell = self._cells[i][j]
+		for j, row in enumerate(self._cells):
+			for i, cell in enumerate(row):
+				cell = self._cells[j][i]
 				x = self._x1+self._cell_size_x*i
 				y = self._y1+self._cell_size_y*j
 				cell._x1 = x
@@ -74,18 +74,18 @@ class Maze:
 
 		if j1 == j2:
 			if i2 < i1:
-				cell1.has_top_wall = False
-				cell2.has_bottom_wall = False
-			else:
-				cell1.has_bottom_wall = False
-				cell2.has_top_wall = False
-		else:
-			if j2 < j1:
 				cell1.has_left_wall = False
 				cell2.has_right_wall = False
 			else:
 				cell1.has_right_wall = False
 				cell2.has_left_wall = False
+		else:
+			if j2 < j1:
+				cell1.has_top_wall = False
+				cell2.has_bottom_wall = False
+			else:
+				cell1.has_bottom_wall = False
+				cell2.has_top_wall = False
 
 		self._draw_cell(i1, j1)
 		self._draw_cell(i2, j2)

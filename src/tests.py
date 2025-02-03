@@ -29,7 +29,7 @@ class BasicMazeTests(unittest.TestCase):
         )
         self.assertEqual(m1._x1, 50)
         self.assertEqual(m1._y1, 50)
-        self.assertEqual(m1._cells[5][3]._x1, 50+5*15)
+        self.assertEqual(m1._cells[3][5]._x1, 50+5*15)
 
 class EntryExitTests(unittest.TestCase):
     def test_entry_exit_created(self):
@@ -51,8 +51,8 @@ class ResetVisitedTests(unittest.TestCase):
         num_cols = 12
         num_rows = 10
         m1 = Maze(50, 50, num_rows, num_cols, 15, 15)
-        for col in m1._cells:
-            for cell in col:
+        for row in m1._cells:
+            for cell in row:
                 self.assertFalse(cell.visited)
 
 if __name__ == "__main__":
