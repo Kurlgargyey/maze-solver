@@ -5,6 +5,7 @@ from maze import Maze
 def main():
 	win = Window(800, 600)
 	maz = Maze(5,5,10,10,50,50,win)
+	maz.solve()
 	win.wait_for_close()
 
 if __name__ == "__main__":
