@@ -47,7 +47,7 @@ class BreakWallsTests(unittest.TestCase):
         self.assertTrue(True)
 
 class ResetVisitedTests(unittest.TestCase):
-    def cells_are_unvisited(self):
+    def test_cells_are_unvisited(self):
         num_cols = 12
         num_rows = 10
         m1 = Maze(50, 50, num_rows, num_cols, 15, 15)
